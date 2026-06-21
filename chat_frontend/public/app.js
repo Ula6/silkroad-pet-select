@@ -21,6 +21,8 @@ const state = {
   phase: 'idle',
 };
 
+const NETWORK_TIMEOUT_MS = 8000;
+
 function shouldReuseCurrentSlots(message) {
   const content = String(message || '').trim();
 
@@ -51,6 +53,21 @@ function resetRound(withNotice = false) {
 
 function jumpToReportArea() {
   reportShowcaseEl?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+async function fetchWithTimeout(url, options = {}, timeoutMs = NETWORK_TIMEOUT_MS) {
+  const controller = new AbortController();
+  const timer = window.setTimeout(() => controller.abort(), timeoutMs);
+
+  try {
+    const response = await fetch(url, {
+      ...options,
+      signal: controller.signal,
+    });
+    return response;
+  } finally {
+    window.clearTimeout(timer);
+  }
 }
 
 function escapeHtml(text) {
@@ -116,7 +133,7 @@ function addMessage(role, content, sections = []) {
 }
 
 async function refreshMode() {
-  const response = await fetch('/api/health');
+  const response = await fetchWithTimeout('/api/health');
   const data = await response.json();
   modeBadgeEl.textContent = data.modeLabel;
   modeDescEl.textContent = data.modeDescription;
@@ -140,21 +157,30 @@ async function sendMessage(message) {
     state.phase = 'idle';
   }
 
-  const response = await fetch('/api/chat', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      message,
-      slots: slotsToSend,
-    }),
-  });
+  try {
+    const response = await fetchWithTimeout('/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        message,
+        slots: slotsToSend,
+      }),
+    });
 
-  const data = await response.json();
-  state.slots = data.slots || {};
-  state.phase = data.phase || 'idle';
+    const data = await response.json();
+    state.slots = data.slots || {};
+    state.phase = data.phase || 'idle';
 
-  addMessage(data.role || 'assistant', data.message, data.sections || []);
-  sendBtn.disabled = false;
+    addMessage(data.role || 'assistant', data.message, data.sections || []);
+  } catch (error) {
+    state.phase = 'error';
+    addMessage(
+      'assistant',
+      '当前公网接口响应较慢，已切回稳定演示方式。你可以先点击“开始智能选品演示”，或稍后再试自由输入。'
+    );
+  } finally {
+    sendBtn.disabled = false;
+  }
 }
 
 formEl.addEventListener('submit', async (event) => {
