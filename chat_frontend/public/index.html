@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>丝路宠选</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark">丝</div>
+          <div>
+            <p class="eyebrow">OPC 智能体答辩展示页</p>
+            <h1>丝路宠选</h1>
+          </div>
+        </div>
+        <p class="sidebar-copy">
+          面向江苏跨境电商卖家的跨境宠物用品智能选品顾问。
+          你只需要输入市场、预算、风险偏好和产品方向，系统就会输出可直接展示、可用于业务汇报的结构化选品结论。
+        </p>
+
+        <div class="feature-stack">
+          <div class="feature-pill">需求解析</div>
+          <div class="feature-pill">痛点识别</div>
+          <div class="feature-pill">供应链匹配</div>
+          <div class="feature-pill">利润判断</div>
+        </div>
+
+        <div class="summary-card">
+          <p class="panel-title">能力摘要</p>
+          <div class="summary-item">
+            <strong>一句话输入</strong>
+            <span>自动补齐市场、预算、风险偏好和产品方向</span>
+          </div>
+          <div class="summary-item">
+            <strong>多维判断</strong>
+            <span>同时整合市场、供应链、利润与风险四类信息</span>
+          </div>
+          <div class="summary-item">
+            <strong>结果可展示</strong>
+            <span>输出需求摘要、Top10推荐、重点单品和业务汇报</span>
+          </div>
+        </div>
+
+        <div class="quick-panel">
+          <p class="panel-title">推荐场景</p>
+          <button class="quick-btn" data-message="我想做美国市场的宠物玩具，预算10到20万，偏稳健一点。">美国市场稳健测款</button>
+          <button class="quick-btn" data-message="帮我看东南亚市场的宠物清洁用品，预算5到10万，风险偏保守。">东南亚轻小件方案</button>
+          <button class="quick-btn" data-message="帮我看美国市场可改良、利润空间更好的猫咪用品，预算15万左右，偏稳健。">可改良利润优先</button>
+        </div>
+
+        <div class="status-card">
+          <p class="panel-title">运行状态</p>
+          <div id="modeBadge" class="mode-badge">检测中</div>
+          <p id="modeDesc" class="muted">正在检查当前页面展示版本。</p>
+          <dl class="status-meta">
+            <div>
+              <dt>接入方式</dt>
+              <dd id="modeEndpoint">检测中</dd>
+            </div>
+            <div>
+              <dt>访问范围</dt>
+              <dd id="networkHint">检测中</dd>
+            </div>
+          </dl>
+        </div>
+      </aside>
+
+      <main class="main">
+        <section class="hero" data-section="hero-value">
+          <div class="hero-copy-block">
+            <p class="eyebrow">跨境宠物用品智能选品</p>
+            <h2>10 秒生成跨境宠物用品 Top 10 选品方案</h2>
+            <p class="hero-copy">
+              基于海外评论、商品评分、利润规则与江苏供应链模拟库。
+            </p>
+            <div class="action-group">
+              <button type="button" id="startDemoBtn">开始智能选品演示</button>
+              <button type="button" id="freeInputBtn" class="ghost-btn">自由输入体验</button>
+            </div>
+          </div>
+
+          <article class="summary-card" data-preview="demo-card">
+            <p class="panel-title">稳定演示预览</p>
+            <h3>美国市场｜稳健型宠物玩具</h3>
+            <div class="summary-item">
+              <strong>目标市场</strong>
+              <span>美国站稳健测款</span>
+            </div>
+            <div class="summary-item">
+              <strong>输出结构</strong>
+              <span>Top 10 选品、利润机会、江苏供应链承接建议</span>
+            </div>
+            <div class="summary-item">
+              <strong>适合场景</strong>
+              <span>答辩演示、评委跟看、现场复现</span>
+            </div>
+          </article>
+        </section>
+
+        <section class="intro-grid" data-section="result-cards">
+          <article class="intro-card">
+            <p class="card-eyebrow">结果一览</p>
+            <h3>Top 10 选品清单</h3>
+            <p>面向答辩展示快速给出候选上架商品池。</p>
+          </article>
+          <article class="intro-card">
+            <p class="card-eyebrow">利润洞察</p>
+            <h3>可改良利润机会</h3>
+            <p>不只推荐商品，也识别差评痛点与改良空间。</p>
+          </article>
+          <article class="intro-card accent-card">
+            <p class="card-eyebrow">供应链承接</p>
+            <h3>江苏供应链承接路径</h3>
+            <p>将选品建议映射到本地可承接的产业方向。</p>
+          </article>
+        </section>
+
+        <section class="intro-grid" data-section="entry-actions">
+          <article class="intro-card entry-card-primary">
+            <p class="card-eyebrow">演示入口</p>
+            <h3>先看稳定演示，再决定是否自由体验</h3>
+            <p>主演示入口会直接触发稳定案例，适合答辩讲解和结果跟看。</p>
+          </article>
+          <article class="intro-card accent-card">
+            <p class="card-eyebrow">自由输入</p>
+            <h3>保留现场互动，但不抢首页主节奏</h3>
+            <p>需要评委亲自体验时，再进入输入区补充市场、预算和风险偏好。</p>
+          </article>
+        </section>
+
+        <section class="capability-section" data-section="capability-chain">
+          <p class="card-eyebrow">能力链路</p>
+          <h3>从需求到上架建议，形成一条完整选品链路</h3>
+          <div class="feature-stack">
+            <div class="feature-pill">需求解析</div>
+            <div class="feature-pill">痛点识别</div>
+            <div class="feature-pill">供应链匹配</div>
+            <div class="feature-pill">利润判断</div>
+          </div>
+          <p>保留现有工作流能力，用更适合首页讲解的顺序先展示价值，再进入互动。</p>
+        </section>
+
+        <section class="report-showcase-section" data-section="report-showcase">
+          <p class="card-eyebrow">结果预览</p>
+          <h3>示例选品报告</h3>
+          <p>以下结果区继续沿用当前结构化输出，方便在首页下半部分直接进入演示。</p>
+
+          <section id="chat" class="chat"></section>
+
+          <form id="composer" class="composer">
+            <textarea
+              id="messageInput"
+              rows="3"
+              placeholder="例如：我想做德国市场的宠物玩具，预算10到20万，偏稳健一点，希望优先低风险、轻小件。"
+            ></textarea>
+            <div class="composer-actions">
+              <span class="muted">答辩时建议先运行稳定演示，再切换到自由输入体验。</span>
+              <div class="action-group">
+                <button type="button" id="resetBtn" class="ghost-btn">新一轮分析</button>
+                <button type="submit" id="sendBtn">发送并分析</button>
+              </div>
+            </div>
+          </form>
+        </section>
+      </main>
+    </div>
+
+    <template id="messageTemplate">
+      <article class="message">
+        <div class="avatar"></div>
+        <div class="bubble"></div>
+      </article>
+    </template>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
